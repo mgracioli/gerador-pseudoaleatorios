@@ -5,7 +5,7 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 public class Main {
     public static int fatorial(int valor){
-        if(valor == 1){
+        if(valor == 1 || valor == 0){
             return 1;
         }else{
             return valor*(fatorial(valor-1));
@@ -188,7 +188,7 @@ public class Main {
         // double A = 5;   //esse valor de A pode variar
         // double B = 15;   //esse valor de B pode variar
 
-        // for(i=0; i<semente; i++){
+        // for(i=2; i<semente; i++){
         //     xi = (B-A)*x[i]+A;
         //     fx = x[i];
         //     pontosDoGrafico.add(xi, fx);
@@ -206,7 +206,7 @@ public class Main {
         // double fx = 0;
         // double alfa = 5;   //alfa tem que ser > 0
 
-        // for(i=0; i<semente; i++){
+        // for(i=2; i<semente; i++){
         //     xi = -(Math.log(x[i])/alfa);    //Math.log(x) é equivalente ao ln(x) da matemática
         //     fx = alfa*Math.exp(-(alfa*xi)); //Math.exp(x) retorna o número de Euler elevado a x, ou seja, e^x
         //     pontosDoGrafico.add(xi, fx);
@@ -225,7 +225,7 @@ public class Main {
         // double alfa = 3;   //o valor de alfa pode variar
         // double beta = 1;   //o valor de beta pode variar
 
-        // for(i=0; i<semente; i++){
+        // for(i=2; i<semente; i++){
         //     xi = beta*(-(Math.log(Math.pow(x[i], (1/alfa)))));
         //     fx = alfa*(Math.pow(beta,-(alfa)))*Math.pow(xi, (alfa-1))*Math.exp(-(Math.pow((xi/beta), alfa))) ; //Math.exp(x) retorna o número de Euler elevado a x, ou seja, e^x
         //     pontosDoGrafico.add(xi, fx);
@@ -245,11 +245,13 @@ public class Main {
         int j;
         double somat = 0;
 
-        for(j=0; j<semente; j++){
-            for(i=0; i<k; i++){
-                somat += Math.log(x[i]);
+        for(j=2; j<semente; j++){
+            for(i=2; i<k+2; i++){
+                somat += (Math.log(x[i])/alfa);
+                // somat += Math.log(x[i]);
             }
-            xi = -(somat/alfa);
+            xi = -(somat);
+            // xi = -(somat/alfa);
             fx = (alfa*Math.exp(-(alfa*xi))*Math.pow((alfa*xi), (k-1)))/(fatorial(k-1));
             pontosDoGrafico.add(xi, fx);
         }
@@ -261,6 +263,6 @@ public class Main {
     }
 
     public static void main(String[] args){
-        geraNumeros(4002);        
+        geraNumeros(3002);        
     }
 }
